@@ -146,6 +146,14 @@
           image = getRandomElement(this.salad);
         }
 
+        if (image) {
+          if (this.pizza.includes(image)) {
+            this.pizza = this.pizza.filter((el) => el !== image);
+          } else if (this.salad.includes(image)) {
+            this.salad = this.salad.filter((el) => el !== image);
+          }
+        }
+
         return image;
       }
 
