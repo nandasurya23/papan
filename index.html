@@ -22,6 +22,27 @@
         gap: 10px;
       }
 
+      h3 {
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+      }
+
+      ul li:first-child {
+        font-weight: bold;
+      }
+
+      ul li {
+        display: inline-block;
+        margin: 5px;
+      }
+
       #prediction div {
         text-align: center;
         background-color: #ffffff;
@@ -38,6 +59,36 @@
       .percentage {
         margin-top: 10px;
         font-weight: bold;
+      }
+
+      input[type="text"] {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin-bottom: 10px;
+        width: 300px;
+      }
+
+      button {
+        padding: 10px 20px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #45a049;
+      }
+
+      button:disabled {
+        background-color: #898989;
+      }
+
+      .disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
       }
     </style>
   </head>
@@ -69,6 +120,37 @@
         <div class="percentage"></div>
       </div>
     </div>
+    <input
+      type="text"
+      id="lastResultInput"
+      placeholder="Masukkan hasil terakhir"
+      oninput="handleInputChange()"
+    />
+    <button
+      id="predictionButton"
+      onclick="generatePrediction()"
+      class="disabled"
+    >
+      Prediksi
+    </button>
+    <h3>
+      hanya bisa menginput nama nama dibawah ini , inputkan result terakhir
+      sesuai yang ada di papan greedy
+    </h3>
+    <ul>
+      <li>SALAD</li>
+      <li>wortel</li>
+      <li>jagung</li>
+      <li>kol</li>
+      <li>tomat</li>
+    </ul>
+    <ul>
+      <li>PIZZA</li>
+      <li>hotdog</li>
+      <li>sate</li>
+      <li>ayam</li>
+      <li>daging</li>
+    </ul>
 
     <script>
       this.patterns = [
@@ -94,15 +176,51 @@
         "https://ik.imagekit.io/lshkgi0dm/bg/daging.png?updatedAt=1682339879224",
       ];
 
+      function handleInputChange() {
+        var input = document.getElementById("lastResultInput").value;
+        var predictionButton = document.getElementById("predictionButton");
+
+        if (input.trim() === "" || !isValidFoodName(input)) {
+          predictionButton.classList.add("disabled");
+          predictionButton.setAttribute("disabled", true);
+        } else {
+          predictionButton.classList.remove("disabled");
+          predictionButton.removeAttribute("disabled");
+        }
+      }
+
+      function isValidFoodName(foodName) {
+        var saladFoods = ["wortel", "jagung", "kol", "tomat"];
+        var pizzaFoods = ["hotdog", "sate", "ayam", "daging"];
+
+        return saladFoods.includes(foodName) || pizzaFoods.includes(foodName);
+      }
+
       function generatePrediction() {
+        var lastResult = document.getElementById("lastResultInput").value;
+
         var prevPatternIndex = -1;
         var patternIndex;
 
-        do {
+        // Cari indeks pola berdasarkan lastResult
+        if (lastResult === "hotdog") {
+          patternIndex = 0;
+        } else if (lastResult === "sate") {
+          patternIndex = 1;
+        } else if (lastResult === "wortel") {
+          patternIndex = 2;
+        } else if (lastResult === "jagung") {
+          patternIndex = 3;
+        } else if (lastResult === "ayam") {
+          patternIndex = 4;
+        } else if (lastResult === "kol") {
+          patternIndex = 5;
+        } else {
+          // Last result tidak valid, lakukan sesuai kebijakan Anda
           patternIndex = Math.floor(Math.random() * this.patterns.length);
-        } while (patternIndex === prevPatternIndex);
+        }
 
-        prevPatternIndex = patternIndex;
+        var prevPatternIndex = patternIndex;
         var pattern = this.patterns[patternIndex];
 
         var predictions = [];
@@ -120,8 +238,13 @@
           predictionElement.innerHTML = `
             <img src="${predictions[j].image}" alt="Prediction ${j + 1}">
             <div class="percentage">${predictions[j].percentage}%</div>
-          `;
+`;
         }
+
+        // Menonaktifkan tombol prediksi setelah melakukan prediksi
+        var predictionButton = document.getElementById("predictionButton");
+        predictionButton.classList.add("disabled");
+        predictionButton.setAttribute("disabled", true);
       }
 
       function getImageByPattern(item) {
@@ -166,8 +289,6 @@
         var randomIndex = Math.floor(Math.random() * array.length);
         return array[randomIndex];
       }
-
-      generatePrediction();
     </script>
   </body>
 </html>
