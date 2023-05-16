@@ -61,7 +61,7 @@
         font-weight: bold;
       }
 
-      input[type="text"] {
+      select {
         padding: 10px;
         border: 1px solid #ccc;
         border-radius: 4px;
@@ -120,38 +120,25 @@
         <div class="percentage"></div>
       </div>
     </div>
-    <input
-      type="text"
-      id="lastResultInput"
-      placeholder="Masukkan hasil terakhir"
-      oninput="handleInputChange()"
-    />
+    <select id="lastResultInput" onchange="handleInputChange()">
+      <option value="" selected disabled>Pilih hasil terakhir</option>
+      <option value="hotdog">Hotdog</option>
+      <option value="sate">Sate</option>
+      <option value="ayam">Ayam</option>
+      <option value="daging">Daging</option>
+      <option value="wortel">Wortel</option>
+      <option value="jagung">Jagung</option>
+      <option value="kol">Kol</option>
+      <option value="tomat">Tomat</option>
+    </select>
     <button
       id="predictionButton"
       onclick="generatePrediction()"
       class="disabled"
+      disabled
     >
       Prediksi
     </button>
-    <h3>
-      hanya bisa menginput nama nama dibawah ini , inputkan result terakhir
-      sesuai yang ada di papan greedy
-    </h3>
-    <ul>
-      <li>SALAD</li>
-      <li>wortel</li>
-      <li>jagung</li>
-      <li>kol</li>
-      <li>tomat</li>
-    </ul>
-    <ul>
-      <li>PIZZA</li>
-      <li>hotdog</li>
-      <li>sate</li>
-      <li>ayam</li>
-      <li>daging</li>
-    </ul>
-
     <script>
       this.patterns = [
         ["hotdog", "sate", "wortel", "jagung", "ayam", "kol"],
@@ -177,23 +164,17 @@
       ];
 
       function handleInputChange() {
-        var input = document.getElementById("lastResultInput").value;
+        var select = document.getElementById("lastResultInput");
+        var selectedValue = select.options[select.selectedIndex].value;
         var predictionButton = document.getElementById("predictionButton");
 
-        if (input.trim() === "" || !isValidFoodName(input)) {
+        if (selectedValue === "") {
           predictionButton.classList.add("disabled");
           predictionButton.setAttribute("disabled", true);
         } else {
           predictionButton.classList.remove("disabled");
           predictionButton.removeAttribute("disabled");
         }
-      }
-
-      function isValidFoodName(foodName) {
-        var saladFoods = ["wortel", "jagung", "kol", "tomat"];
-        var pizzaFoods = ["hotdog", "sate", "ayam", "daging"];
-
-        return saladFoods.includes(foodName) || pizzaFoods.includes(foodName);
       }
 
       function generatePrediction() {
