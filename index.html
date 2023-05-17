@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Prediksi Permainan Papan Greedy dengan Pola</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Prediksi</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <h1>Prediksi</h1>
@@ -31,17 +31,54 @@
         <img src="" alt="Prediction 6" />
         <div class="percentage"></div>
       </div>
+      <div id="finalPrediction">
+        <h2>Final Prediction:</h2>
+        <img src="" alt="Final Prediction" id="finalPredictionImage" />
+        <div class="percentage" id="finalPredictionPercentage"></div>
+      </div>
     </div>
     <select id="lastResultInput" onchange="handleInputChange()">
-      <option value="" selected disabled>Pilih hasil terakhir</option>
-      <option value="hotdog">Hotdog</option>
-      <option value="sate">Sate</option>
-      <option value="ayam">Ayam</option>
-      <option value="daging">Daging</option>
-      <option value="wortel">Wortel</option>
-      <option value="jagung">Jagung</option>
-      <option value="kol">Kol</option>
-      <option value="tomat">Tomat</option>
+      <option value="" selected disabled>Select last result</option>
+      <option
+        value="https://ik.imagekit.io/lshkgi0dm/bg/hotdog.png?updatedAt=1682339816766"
+      >
+        Hotdog
+      </option>
+      <option
+        value="https://ik.imagekit.io/lshkgi0dm/bg/sate.png?updatedAt=1682339837845"
+      >
+        Sate
+      </option>
+      <option
+        value="https://ik.imagekit.io/lshkgi0dm/bg/ayam.png?updatedAt=1682339859988"
+      >
+        Ayam
+      </option>
+      <option
+        value="https://ik.imagekit.io/lshkgi0dm/bg/daging.png?updatedAt=1682339879224"
+      >
+        Daging
+      </option>
+      <option
+        value="https://ik.imagekit.io/lshkgi0dm/bg/wortel.png?updatedAt=1682339707964"
+      >
+        Wortel
+      </option>
+      <option
+        value="https://ik.imagekit.io/lshkgi0dm/bg/jagung.png?updatedAt=1682339730263"
+      >
+        Jagung
+      </option>
+      <option
+        value="https://ik.imagekit.io/lshkgi0dm/bg/kol.png?updatedAt=1682339755582"
+      >
+        Kol
+      </option>
+      <option
+        value="https://ik.imagekit.io/lshkgi0dm/bg/tomat.png?updatedAt=1682339781740"
+      >
+        Tomat
+      </option>
     </select>
     <button
       id="predictionButton"

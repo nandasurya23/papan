@@ -41,21 +41,21 @@ function generatePrediction() {
     var prevPatternIndex = -1;
     var patternIndex;
 
-    // Cari indeks pola berdasarkan lastResult
-    if (lastResult === "hotdog") {
+    // Find pattern index based on lastResult
+    if (lastResult === "https://ik.imagekit.io/lshkgi0dm/bg/hotdog.png?updatedAt=1682339816766") {
         patternIndex = 0;
-    } else if (lastResult === "sate") {
+    } else if (lastResult === "https://ik.imagekit.io/lshkgi0dm/bg/sate.png?updatedAt=1682339837845") {
         patternIndex = 1;
-    } else if (lastResult === "wortel") {
+    } else if (lastResult === "https://ik.imagekit.io/lshkgi0dm/bg/wortel.png?updatedAt=1682339707964") {
         patternIndex = 2;
-    } else if (lastResult === "jagung") {
+    } else if (lastResult === "https://ik.imagekit.io/lshkgi0dm/bg/jagung.png?updatedAt=1682339730263") {
         patternIndex = 3;
-    } else if (lastResult === "ayam") {
+    } else if (lastResult === "https://ik.imagekit.io/lshkgi0dm/bg/ayam.png?updatedAt=1682339859988") {
         patternIndex = 4;
-    } else if (lastResult === "kol") {
+    } else if (lastResult === "https://ik.imagekit.io/lshkgi0dm/bg/kol.png?updatedAt=1682339755582") {
         patternIndex = 5;
     } else {
-        // Last result tidak valid, lakukan sesuai kebijakan Anda
+        // Handle invalid last result according to your policy
         patternIndex = Math.floor(Math.random() * this.patterns.length);
     }
 
@@ -77,10 +77,17 @@ function generatePrediction() {
         predictionElement.innerHTML = `
         <img src="${predictions[j].image}" alt="Prediction ${j + 1}">
         <div class="percentage">${predictions[j].percentage}%</div>
-`;
+      `;
     }
 
-    // Menonaktifkan tombol prediksi setelah melakukan prediksi
+    // Generate final prediction
+    var finalPrediction = predictions[Math.floor(Math.random() * predictions.length)];
+    var finalPredictionImage = document.getElementById("finalPredictionImage");
+    finalPredictionImage.src = finalPrediction.image;
+    var finalPredictionPercentage = document.getElementById("finalPredictionPercentage");
+    finalPredictionPercentage.textContent = finalPrediction.percentage + "%";
+
+    // Disable prediction button after generating prediction
     var predictionButton = document.getElementById("predictionButton");
     predictionButton.classList.add("disabled");
     predictionButton.setAttribute("disabled", true);
