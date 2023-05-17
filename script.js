@@ -1,4 +1,4 @@
-this.patterns = [
+var patterns = [
     ["hotdog", "sate", "wortel", "jagung", "ayam", "kol"],
     ["ayam", "kol", "hotdog", "daging", "jagung", "wortel"],
     ["sate", "daging", "tomat", "kol", "jagung", "hotdog"],
@@ -7,14 +7,14 @@ this.patterns = [
     ["jagung", "kol", "hotdog", "ayam", "hotdog", "wortel"],
 ];
 
-this.salad = [
+var salad = [
     "https://ik.imagekit.io/lshkgi0dm/bg/wortel.png?updatedAt=1682339707964",
     "https://ik.imagekit.io/lshkgi0dm/bg/jagung.png?updatedAt=1682339730263",
     "https://ik.imagekit.io/lshkgi0dm/bg/kol.png?updatedAt=1682339755582",
     "https://ik.imagekit.io/lshkgi0dm/bg/tomat.png?updatedAt=1682339781740",
 ];
 
-this.pizza = [
+var pizza = [
     "https://ik.imagekit.io/lshkgi0dm/bg/sate.png?updatedAt=1682339837845",
     "https://ik.imagekit.io/lshkgi0dm/bg/hotdog.png?updatedAt=1682339816766",
     "https://ik.imagekit.io/lshkgi0dm/bg/ayam.png?updatedAt=1682339859988",
@@ -41,26 +41,42 @@ function generatePrediction() {
     var prevPatternIndex = -1;
     var patternIndex;
 
-    // Find pattern index based on lastResult
-    if (lastResult === "https://ik.imagekit.io/lshkgi0dm/bg/hotdog.png?updatedAt=1682339816766") {
+    if (
+        lastResult ===
+        "https://ik.imagekit.io/lshkgi0dm/bg/hotdog.png?updatedAt=1682339816766"
+    ) {
         patternIndex = 0;
-    } else if (lastResult === "https://ik.imagekit.io/lshkgi0dm/bg/sate.png?updatedAt=1682339837845") {
+    } else if (
+        lastResult ===
+        "https://ik.imagekit.io/lshkgi0dm/bg/sate.png?updatedAt=1682339837845"
+    ) {
         patternIndex = 1;
-    } else if (lastResult === "https://ik.imagekit.io/lshkgi0dm/bg/wortel.png?updatedAt=1682339707964") {
+    } else if (
+        lastResult ===
+        "https://ik.imagekit.io/lshkgi0dm/bg/wortel.png?updatedAt=1682339707964"
+    ) {
         patternIndex = 2;
-    } else if (lastResult === "https://ik.imagekit.io/lshkgi0dm/bg/jagung.png?updatedAt=1682339730263") {
+    } else if (
+        lastResult ===
+        "https://ik.imagekit.io/lshkgi0dm/bg/jagung.png?updatedAt=1682339730263"
+    ) {
         patternIndex = 3;
-    } else if (lastResult === "https://ik.imagekit.io/lshkgi0dm/bg/ayam.png?updatedAt=1682339859988") {
+    } else if (
+        lastResult ===
+        "https://ik.imagekit.io/lshkgi0dm/bg/ayam.png?updatedAt=1682339859988"
+    ) {
         patternIndex = 4;
-    } else if (lastResult === "https://ik.imagekit.io/lshkgi0dm/bg/kol.png?updatedAt=1682339755582") {
+    } else if (
+        lastResult ===
+        "https://ik.imagekit.io/lshkgi0dm/bg/kol.png?updatedAt=1682339755582"
+    ) {
         patternIndex = 5;
     } else {
-        // Handle invalid last result according to your policy
-        patternIndex = Math.floor(Math.random() * this.patterns.length);
+        patternIndex = Math.floor(Math.random() * patterns.length);
     }
 
     var prevPatternIndex = patternIndex;
-    var pattern = this.patterns[patternIndex];
+    var pattern = patterns[patternIndex];
 
     var predictions = [];
 
@@ -75,19 +91,24 @@ function generatePrediction() {
         var predictionId = "prediction" + (j + 1);
         var predictionElement = document.getElementById(predictionId);
         predictionElement.innerHTML = `
-        <img src="${predictions[j].image}" alt="Prediction ${j + 1}">
-        <div class="percentage">${predictions[j].percentage}%</div>
-      `;
+                    <img src="${predictions[j].image}" alt="Prediction ${j + 1
+            }">
+                    <div class="percentage">${predictions[j].percentage}%</div>
+                `;
     }
 
-    // Generate final prediction
-    var finalPrediction = predictions[Math.floor(Math.random() * predictions.length)];
-    var finalPredictionImage = document.getElementById("finalPredictionImage");
+    var finalPrediction =
+        predictions[Math.floor(Math.random() * predictions.length)];
+    var finalPredictionImage = document.getElementById(
+        "finalPredictionImage"
+    );
     finalPredictionImage.src = finalPrediction.image;
-    var finalPredictionPercentage = document.getElementById("finalPredictionPercentage");
-    finalPredictionPercentage.textContent = finalPrediction.percentage + "%";
+    var finalPredictionPercentage = document.getElementById(
+        "finalPredictionPercentage"
+    );
+    finalPredictionPercentage.textContent =
+        finalPrediction.percentage + "%";
 
-    // Disable prediction button after generating prediction
     var predictionButton = document.getElementById("predictionButton");
     predictionButton.classList.add("disabled");
     predictionButton.setAttribute("disabled", true);
@@ -96,30 +117,30 @@ function generatePrediction() {
 function getImageByPattern(item) {
     var image;
     if (item === "hotdog") {
-        image = getRandomElement(this.pizza);
+        image = getRandomElement(pizza);
     } else if (item === "sate") {
-        image = getRandomElement(this.pizza);
+        image = getRandomElement(pizza);
     } else if (item === "wortel") {
-        image = getRandomElement(this.salad);
+        image = getRandomElement(salad);
     } else if (item === "jagung") {
-        image = getRandomElement(this.salad);
+        image = getRandomElement(salad);
     } else if (item === "ayam") {
-        image = getRandomElement(this.pizza);
+        image = getRandomElement(pizza);
     } else if (item === "kol") {
-        image = getRandomElement(this.salad);
+        image = getRandomElement(salad);
     } else if (item === "daging") {
-        image = getRandomElement(this.pizza);
+        image = getRandomElement(pizza);
     } else if (item === "tomat") {
-        image = getRandomElement(this.salad);
+        image = getRandomElement(salad);
     } else if (item === "kol") {
-        image = getRandomElement(this.salad);
+        image = getRandomElement(salad);
     }
 
     if (image) {
-        if (this.pizza.includes(image)) {
-            this.pizza = this.pizza.filter((el) => el !== image);
-        } else if (this.salad.includes(image)) {
-            this.salad = this.salad.filter((el) => el !== image);
+        if (pizza.includes(image)) {
+            pizza = pizza.filter((el) => el !== image);
+        } else if (salad.includes(image)) {
+            salad = salad.filter((el) => el !== image);
         }
     }
 
@@ -134,4 +155,30 @@ function calculatePercentage(item) {
 function getRandomElement(array) {
     var randomIndex = Math.floor(Math.random() * array.length);
     return array[randomIndex];
+}
+
+function generateFinalResult() {
+    var finalResultPattern = [];
+    var currentPatternIndex = Math.floor(Math.random() * patterns.length);
+
+    for (var turn = 1; turn <= 37; turn++) {
+        var currentPattern = patterns[currentPatternIndex];
+        finalResultPattern.push(currentPattern);
+
+        var nextPatternIndex;
+        do {
+            nextPatternIndex = Math.floor(Math.random() * patterns.length);
+        } while (nextPatternIndex === currentPatternIndex);
+
+        currentPatternIndex = nextPatternIndex;
+    }
+
+    var finalResult = [];
+    for (var i = 0; i < finalResultPattern.length; i++) {
+        var pattern = finalResultPattern[i];
+        var item = pattern[Math.floor(Math.random() * pattern.length)];
+        finalResult.push(item);
+    }
+
+    return finalResult;
 }

@@ -1,6 +1,10 @@
-/* CSS Keren - Responsif dan Animasi */
+/* Wrapper */
+.wrapper {
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 20px;
+}
 
-/* Tampilan umum */
 body {
   font-family: Arial, sans-serif;
   background-color: #f0f0f0;

@@ -1,93 +1,99 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Prediksi</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
+    <title>BIGO PREDIKSI</title>
+    <link rel="shortcut icon" href="bg.jpg" type="image/x-icon" />
   </head>
   <body>
     <h1>Prediksi</h1>
-    <div id="prediction">
-      <div id="prediction1">
-        <img src="" alt="Prediction 1" />
-        <div class="percentage"></div>
+    <div class="wrapper">
+      <div id="prediction">
+        <div id="prediction1">
+          <img src="" alt="Prediction 1" />
+          <div class="percentage"></div>
+        </div>
+        <div id="prediction2">
+          <img src="" alt="Prediction 2" />
+          <div class="percentage"></div>
+        </div>
+        <div id="prediction3">
+          <img src="" alt="Prediction 3" />
+          <div class="percentage"></div>
+        </div>
+        <div id="prediction4">
+          <img src="" alt="Prediction 4" />
+          <div class="percentage"></div>
+        </div>
+        <div id="prediction5">
+          <img src="" alt="Prediction 5" />
+          <div class="percentage"></div>
+        </div>
+        <div id="prediction6">
+          <img src="" alt="Prediction 6" />
+          <div class="percentage"></div>
+        </div>
+        <div id="finalPrediction">
+          <h2>Final Prediction:</h2>
+          <img src="" alt="Final Prediction" id="finalPredictionImage" />
+          <div class="percentage" id="finalPredictionPercentage"></div>
+        </div>
       </div>
-      <div id="prediction2">
-        <img src="" alt="Prediction 2" />
-        <div class="percentage"></div>
-      </div>
-      <div id="prediction3">
-        <img src="" alt="Prediction 3" />
-        <div class="percentage"></div>
-      </div>
-      <div id="prediction4">
-        <img src="" alt="Prediction 4" />
-        <div class="percentage"></div>
-      </div>
-      <div id="prediction5">
-        <img src="" alt="Prediction 5" />
-        <div class="percentage"></div>
-      </div>
-      <div id="prediction6">
-        <img src="" alt="Prediction 6" />
-        <div class="percentage"></div>
-      </div>
-      <div id="finalPrediction">
-        <h2>Final Prediction:</h2>
-        <img src="" alt="Final Prediction" id="finalPredictionImage" />
-        <div class="percentage" id="finalPredictionPercentage"></div>
-      </div>
+      <select id="lastResultInput" onchange="handleInputChange()">
+        <option value="" selected disabled>Select last result</option>
+        <option
+          value="https://ik.imagekit.io/lshkgi0dm/bg/hotdog.png?updatedAt=1682339816766"
+        >
+          Hotdog
+        </option>
+        <option
+          value="https://ik.imagekit.io/lshkgi0dm/bg/sate.png?updatedAt=1682339837845"
+        >
+          Sate
+        </option>
+        <option
+          value="https://ik.imagekit.io/lshkgi0dm/bg/ayam.png?updatedAt=1682339859988"
+        >
+          Ayam
+        </option>
+        <option
+          value="https://ik.imagekit.io/lshkgi0dm/bg/daging.png?updatedAt=1682339879224"
+        >
+          Daging
+        </option>
+        <option
+          value="https://ik.imagekit.io/lshkgi0dm/bg/wortel.png?updatedAt=1682339707964"
+        >
+          Wortel
+        </option>
+        <option
+          value="https://ik.imagekit.io/lshkgi0dm/bg/jagung.png?updatedAt=1682339730263"
+        >
+          Jagung
+        </option>
+        <option
+          value="https://ik.imagekit.io/lshkgi0dm/bg/kol.png?updatedAt=1682339755582"
+        >
+          Kol
+        </option>
+        <option
+          value="https://ik.imagekit.io/lshkgi0dm/bg/tomat.png?updatedAt=1682339781740"
+        >
+          Tomat
+        </option>
+      </select>
+      <button
+        id="predictionButton"
+        onclick="generatePrediction()"
+        class="disabled"
+        disabled
+      >
+        Prediksi
+      </button>
     </div>
-    <select id="lastResultInput" onchange="handleInputChange()">
-      <option value="" selected disabled>Select last result</option>
-      <option
-        value="https://ik.imagekit.io/lshkgi0dm/bg/hotdog.png?updatedAt=1682339816766"
-      >
-        Hotdog
-      </option>
-      <option
-        value="https://ik.imagekit.io/lshkgi0dm/bg/sate.png?updatedAt=1682339837845"
-      >
-        Sate
-      </option>
-      <option
-        value="https://ik.imagekit.io/lshkgi0dm/bg/ayam.png?updatedAt=1682339859988"
-      >
-        Ayam
-      </option>
-      <option
-        value="https://ik.imagekit.io/lshkgi0dm/bg/daging.png?updatedAt=1682339879224"
-      >
-        Daging
-      </option>
-      <option
-        value="https://ik.imagekit.io/lshkgi0dm/bg/wortel.png?updatedAt=1682339707964"
-      >
-        Wortel
-      </option>
-      <option
-        value="https://ik.imagekit.io/lshkgi0dm/bg/jagung.png?updatedAt=1682339730263"
-      >
-        Jagung
-      </option>
-      <option
-        value="https://ik.imagekit.io/lshkgi0dm/bg/kol.png?updatedAt=1682339755582"
-      >
-        Kol
-      </option>
-      <option
-        value="https://ik.imagekit.io/lshkgi0dm/bg/tomat.png?updatedAt=1682339781740"
-      >
-        Tomat
-      </option>
-    </select>
-    <button
-      id="predictionButton"
-      onclick="generatePrediction()"
-      class="disabled"
-      disabled
-    >
-      Prediksi
-    </button>
-    <script src="script.js"></script>
   </body>
+  <script src="script.js"></script>
 </html>
